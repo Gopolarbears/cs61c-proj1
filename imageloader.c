@@ -55,23 +55,21 @@ Image *readData(char *filename)
 void writeData(Image *image)
 {
 	//YOUR CODE HERE
-	FILE* file = fopen("studentOutputs/JohnConway.ppm", "w");
 	int width = image->cols;
 	int height = image->rows;
-	fprintf(file, "P3\n");
-	fprintf(file, "%d %d\n", width, height);
-	fprintf(file, "%d\n", 255);
+	printf("P3\n");
+	printf("%d %d\n", width, height);
+	printf("%d\n", 255);
 	Color* color = *(image->image);
 	for (int i = 0; i < width * height; i++) {
-		fprintf(file, "%3d %3d %3d", color->R, color->G, color->B);
+		printf("%3d %3d %3d", color->R, color->G, color->B);
 		if ((i + 1) % width == 0) {
-			fprintf(file, "\n");
+			printf("\n");
 		} else {
-			fprintf(file, "   ");
+			printf("   ");
 		}
 		color++;
 	}
-	fclose(file);
 }
 
 //Frees an image
