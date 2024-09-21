@@ -50,7 +50,7 @@ Image *steganography(Image *image)
 	Color* colors = malloc(image->cols * image->rows * sizeof(Color));
 	Color** ptr = malloc(sizeof(Color*));
 	*ptr = colors;
-	newImage->image = &(*ptr);
+	newImage->image = ptr;
 	for (int i = 0; i < image->rows; i++) {
 		for (int j = 0; j < image->cols; j++) {
 			Color* newColor = evaluateOnePixel(image, i, j);
@@ -84,6 +84,7 @@ int main(int argc, char **argv)
 	Image* image = readData(argv[1]);
 	Image* newImage = steganography(image);
 	writeData(newImage);
+	
 	freeImage(image);
 	freeImage(newImage);
 	return 0;
